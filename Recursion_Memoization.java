@@ -4,28 +4,34 @@ import java.util.Map;
 
 public class Recursion_Memoization {
 
-    private static int BackTrack(int[] row, int start, int white, int black, boolean WhiteSegment){
-        if(start==row.length){
-            return 1;
+    private static int simulate(int[] row, int white, int black) {
+        int totalWays = 0;
+        int currentIndex = 0;
+
+        while (currentIndex < row.length) {
+            int whiteCount = 0, blackCount = 0;
+
+
+            for (int i = currentIndex; i < row.length; i++) {
+                if (row[i] == 1) whiteCount++;
+                if (whiteCount == white) {
+                    totalWays++;
+                    currentIndex = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = currentIndex; i < row.length; i++) {
+                if (row[i] == 0) blackCount++;
+                if (blackCount == black) {
+                    totalWays++;
+                    currentIndex = i + 1;
+                    break;
+                }
+            }
         }
-        int count=0;
-        int whitecount=0;
-        int blackcount=0;
-        for(int i=start;i<row.length;i++){
-            if(row[i]==1){
-                whitecount++;
-            }
-            else{
-                blackcount++;
-            }
-            if(WhiteSegment && whitecount==white){
-                count+=BackTrack(row,i+1,white,black,false);
-            }
-            else if(!WhiteSegment && blackcount==black){
-                count+=BackTrack(row,i+1,white,black,true);
-            }
-        }
-        return count;
+
+        return totalWays;
     }
 
 
@@ -43,17 +49,20 @@ public class Recursion_Memoization {
             WhiteBall=!WhiteBall;
         }
 
-        return BackTrack(row,0,white,black,true)+BackTrack(row,0,white,black,false);
+        return simulate(row, white, black);
     }
     public static void main(String[] args){
-        int[] balls = {2, 2};
-        int white = 1, black = 2;
-        System.out.println("Backtracking Result: " + count_ways(balls, white, black));
+        int[] balls1 = {2, 2};
+        int white1 = 1, black1 = 2;
+        System.out.println("Greedy Simulation Result: " + count_ways(balls1, white1, black1));
 
-        balls = new int[]{2, 1, 3};
-        white = 1;
-        black = 1;
-        System.out.println("Backtracking Result: " + count_ways(balls, white, black));
+        int[] balls2 = {2, 1, 3};
+        int white2 = 1, black2 = 1;
+        System.out.println("Greedy Simulation Result: " + count_ways(balls2, white2, black2));
+
+        int[] balls3 = {1, 1, 1, 1, 1};
+        int white3 = 1, black3 = 1;
+        System.out.println("Greedy Simulation Result: " + count_ways(balls3, white3, black3));
 
     }
 
