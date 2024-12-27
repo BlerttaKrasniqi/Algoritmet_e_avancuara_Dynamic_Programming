@@ -48,26 +48,26 @@ Vargu balls përfaqëson topat . Ky varg shndërrohet në një varg row, që  p�
 
 ## Kompleksiteti kohor
 1.	Rreshti (row):
-o	Krijimi i array row që përfaqëson topat të bardhë dhe të zinj kërkon O(n)  ku n është numri total i topave (n=sum(balls))
+-	Krijimi i array row që përfaqëson topat të bardhë dhe të zinj kërkon O(n)  ku n është numri total i topave (n=sum(balls))
 2.	Unaza Kryesore:
-o	Unaza e jashtme kalon O(n) herë.
-o	Për çdo iteracion të ciklit të jashtëm, cikli i brendshëm përpunon deri në iii elemente, që prodhon një kompleksitet të përgjithshëm O(n2) për të dy ciklet së bashku.
+-	Unaza e jashtme kalon O(n) herë.
+-	Për çdo iteracion të ciklit të jashtëm, cikli i brendshëm përpunon deri në iii elemente, që prodhon një kompleksitet të përgjithshëm O(n^2) për të dy ciklet së bashku.
 
 ## Kompleksiteti Total Kohor:
-•	O(n2)
+•	O(n^2)
 
 
 ## Kompleksiteti hapsinor
 1.	Array row:
-o	Ruajtja e topave kërkon hapësirë O(n)
+-	Ruajtja e topave kërkon hapësirë O(n)
 2.	Array dp:
-o	Kërkon hapësirë O(n) për ruajtjen e rezultateve të ndërmjetme.
+-	Kërkon hapësirë O(n) për ruajtjen e rezultateve të ndërmjetme.
 
 ## Kompleksiteti Total Hapësinor:
 •	O(n)
 
 
-## Perfundim
+
 
 
 ## Përshkrimi i Kodit
@@ -86,11 +86,11 @@ o	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për nd
 
 ## Kompleksiteti kohor
 1.	Rreshti (row):
-o	Krijimi i array row kërkon O(n) njësoj si në qasjen dinamike.
+-	Krijimi i array row kërkon O(n) njësoj si në qasjen dinamike.
 2.	Simulimi (simulate):
-o	Algoritmi kalon linearisht nëpër elementet e row për të numëruar topat e bardhë dhe të zinj në segmente të ndryshme.
-o	Çdo element vizitohet një ose dy herë në total.
-o	Kompleksiteti i simulate është O(n)
+-	Algoritmi kalon linearisht nëpër elementet e row për të numëruar topat e bardhë dhe të zinj në segmente të ndryshme.
+-	Çdo element vizitohet një ose dy herë në total.
+-	Kompleksiteti i simulate është O(n)
 
 ## Kompleksiteti Total Kohor:
 •	O(n)
