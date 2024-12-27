@@ -13,10 +13,10 @@ Qëllimi është të gjenden të gjitha mënyrat e mundshme për të ndarë varg
 Input: {2, 2}, 1, 2
 Output: 4
 •	Ndarjet janë:
-o	Segmenti i bardhë W, segmenti i bardhë W, segmenti i zi BB.
-o	Segmenti i bardhë W, segmenti i bardhë WBB.
-o	Segmenti i bardhë W, segmenti i zi WBB.
-o	Segmenti i zi WWBB.
+-	Segmenti i bardhë W, segmenti i bardhë W, segmenti i zi BB.
+-	Segmenti i bardhë W, segmenti i bardhë WBB.
+-	Segmenti i bardhë W, segmenti i zi WBB.
+-	Segmenti i zi WWBB.
 
 
 ## Kërkesa
@@ -32,17 +32,17 @@ Vargu balls përfaqëson topat . Ky varg shndërrohet në një varg row, që  p�
 
 2.	Inicimi i DP:
 •	Një varg dp përdoret për të ruajtur numrin e mënyrave për të ndarë vargun deri në indeksin iii.
-•	dp[0]dp[0]dp[0] inicializohet me 1, pasi ka vetëm një mënyrë për të trajtuar një varg bosh.
+•	dp[0]inicializohet me 1, pasi ka vetëm një mënyrë për të trajtuar një varg bosh.
 <img width="186" alt="Screenshot 2024-12-27 142504" src="https://github.com/user-attachments/assets/4e22d791-e97a-49b7-b736-f498a9f44a1f" />
 
 3. Përpunimi i DP:
 •	Për çdo indeks iii, algoritmi kontrollon të gjitha ndarjet e mundshme duke ecur mbrapa nga iii.
-•	Për çdo ndarje, llogaritet numri i topave të bardhë dhe të zinj në segmentin aktual. Nëse një segment përputhet me kushtet e një segmenti të bardhë ose të zi, vlera e dp[i]dp[i]dp[i] përditësohet duke shtuar dp[j−1]dp[j-1]dp[j−1].
+•	Për çdo ndarje, llogaritet numri i topave të bardhë dhe të zinj në segmentin aktual. Nëse një segment përputhet me kushtet e një segmenti të bardhë ose të zi, vlera e dp[i] përditësohet duke shtuar dp[j−1].
 <img width="359" alt="foto3" src="https://github.com/user-attachments/assets/fd59b96a-2d0e-4793-8bb6-3d0b8bd3a904" />
 
 4. Rezultati Final:
-•	Rezultati ruhet në dp[n]dp[n]dp[n], ku nnn është gjatësia totale e vargut të topave.
-•	FOTO
+•	Rezultati ruhet në dp[n], ku nnn është gjatësia totale e vargut të topave.
+
 
 
 
@@ -75,14 +75,14 @@ Ky kod përdor një qasje të bazuar në rekursion me memoizim për të gjetur n
 
 ## Hapat kryesor të implementimit
 1.	Transformimi i Vargut 
-o	Ashtu si në qasjen e parë, vargu balls konvertohet në një varg row, ku çdo top përfaqësohet si 1 për të bardhët dhe 0 për të zinjtë.
+-	Ashtu si në qasjen e parë, vargu balls konvertohet në një varg row, ku çdo top përfaqësohet si 1 për të bardhët dhe 0 për të zinjtë.
 2.	Funksioni simulate:
-o	Ky funksion simulon ndarjen e vargut duke përdorur një qasje greedy.
-o	Numëron segmentet "të bardhë" dhe "të zi" në mënyrë të njëpasnjëshme, duke përdorur një unazë për të llogaritur dhe kaluar në segmentin tjetër.
+-	Ky funksion simulon ndarjen e vargut duke përdorur një qasje greedy.
+-	Numëron segmentet "të bardhë" dhe "të zi" në mënyrë të njëpasnjëshme, duke përdorur një unazë për të llogaritur dhe kaluar në segmentin tjetër.
 3.	Numërimi i Segmentimeve:
-o	Për çdo segment, kontrollohet nëse plotësohet kushti për të bardhët ose për të zinjtë. Nëse plotësohet, shtohet në numrin total të mënyrave dhe vazhdohet me segmentin tjetër.
+-	Për çdo segment, kontrollohet nëse plotësohet kushti për të bardhët ose për të zinjtë. Nëse plotësohet, shtohet në numrin total të mënyrave dhe vazhdohet me segmentin tjetër.
 4.	Rezultati Final:
-o	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për ndarjen e vargut.
+-	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për ndarjen e vargut.
 
 ## Kompleksiteti kohor
 1.	Rreshti (row):
@@ -97,9 +97,9 @@ o	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për nd
 
 ## Kompleksiteti hapsinor
 1.	Array row:
-o	Kërkon hapësirë O(n) për ruajtjen e topave.
+-	Kërkon hapësirë O(n) për ruajtjen e topave.
 2.	Stack Rekursioni:
-o	Në këtë qasje nuk përdoret rekursion i thellë, dhe për këtë arsye nuk ka hapësirë shtesë të ndjeshme për call stack.
+-	Në këtë qasje nuk përdoret rekursion i thellë, dhe për këtë arsye nuk ka hapësirë shtesë të ndjeshme për call stack.
 
 ## Kompleksiteti Total Hapësinor:
 •	O(n)
