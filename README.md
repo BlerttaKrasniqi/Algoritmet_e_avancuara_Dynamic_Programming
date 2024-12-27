@@ -1,13 +1,13 @@
 # Programimi dinamik
 ## Përshkrimi i Problemit
-Ky problem trajton ndarjen e një vargu topash të bardhë dhe të zinj. Vargu i topave duket si më poshtë:__
-•	Në fillim janë balls[0] topa të bardhë.__
-•	Pas tyre janë balls[1] topa të zinj.__
-•	Më pas janë balls[2] topa të bardhë, dhe kështu me radhë, duke alternuar mes topave të bardhë dhe të zinj.__
-Objektivi është të ndajmë vargun në segmente, ku çdo segment etiketohet si "i bardhë" ose "i zi":__
-•	Një segment "i bardhë" duhet të përmbajë saktësisht white topa të bardhë dhe një numër të çfarëdoshëm topash të zinj.__
-•	Një segment "i zi" duhet të përmbajë saktësisht black topa të zinj dhe një numër të çfarëdoshëm topash të bardhë.__
-Qëllimi është të gjenden të gjitha mënyrat e mundshme për të ndarë vargun në segmente dhe për t'u dhënë etiketa.__
+Ky problem trajton ndarjen e një vargu topash të bardhë dhe të zinj. Vargu i topave duket si më poshtë:
+•	Në fillim janë balls[0] topa të bardhë
+•	Pas tyre janë balls[1] topa të zinj.
+•	Më pas janë balls[2] topa të bardhë, dhe kështu me radhë, duke alternuar mes topave të bardhë dhe të zinj.
+Objektivi është të ndajmë vargun në segmente, ku çdo segment etiketohet si "i bardhë" ose "i zi":
+•	Një segment "i bardhë" duhet të përmbajë saktësisht white topa të bardhë dhe një numër të çfarëdoshëm topash të zinj.
+•	Një segment "i zi" duhet të përmbajë saktësisht black topa të zinj dhe një numër të çfarëdoshëm topash të bardhë.
+Qëllimi është të gjenden të gjitha mënyrat e mundshme për të ndarë vargun në segmente dhe për t'u dhënë etiketa.
 
 ## Shembuj
 Input: {2, 2}, 1, 2
