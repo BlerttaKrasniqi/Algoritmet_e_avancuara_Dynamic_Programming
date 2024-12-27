@@ -28,17 +28,18 @@ Hapat Kryesorë të Implementimit
 1.	Transformimi i Vargut
 Vargu balls përfaqëson topat . Ky varg shndërrohet në një varg row, që  përmban vlerat 1 për të topa bardhë, 0 për topa të zinj.
 
-FOTO
+<img width="371" alt="foto 1" src="https://github.com/user-attachments/assets/68c06140-69d2-4f47-88b4-57795e3a8e9a" />
 
 2.	Inicimi i DP:
 •	Një varg dp përdoret për të ruajtur numrin e mënyrave për të ndarë vargun deri në indeksin iii.
 •	dp[0]dp[0]dp[0] inicializohet me 1, pasi ka vetëm një mënyrë për të trajtuar një varg bosh.
-•	FOTO
+<img width="186" alt="Screenshot 2024-12-27 142504" src="https://github.com/user-attachments/assets/4e22d791-e97a-49b7-b736-f498a9f44a1f" />
+
 3. Përpunimi i DP:
 •	Për çdo indeks iii, algoritmi kontrollon të gjitha ndarjet e mundshme duke ecur mbrapa nga iii.
 •	Për çdo ndarje, llogaritet numri i topave të bardhë dhe të zinj në segmentin aktual. Nëse një segment përputhet me kushtet e një segmenti të bardhë ose të zi, vlera e dp[i]dp[i]dp[i] përditësohet duke shtuar dp[j−1]dp[j-1]dp[j−1].
-•	FOTO
-•	
+<img width="359" alt="foto3" src="https://github.com/user-attachments/assets/fd59b96a-2d0e-4793-8bb6-3d0b8bd3a904" />
+
 4. Rezultati Final:
 •	Rezultati ruhet në dp[n]dp[n]dp[n], ku nnn është gjatësia totale e vargut të topave.
 •	FOTO
