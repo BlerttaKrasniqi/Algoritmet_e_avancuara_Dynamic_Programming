@@ -54,15 +54,15 @@ public class Recursion_Memoization {
     public static void main(String[] args){
         int[] balls1 = {2, 2};
         int white1 = 1, black1 = 2;
-        System.out.println("Greedy Simulation Result: " + count_ways(balls1, white1, black1));
+        System.out.println(" Result: " + count_ways(balls1, white1, black1));
 
         int[] balls2 = {2, 1, 3};
         int white2 = 1, black2 = 1;
-        System.out.println("Greedy Simulation Result: " + count_ways(balls2, white2, black2));
+        System.out.println(" Result: " + count_ways(balls2, white2, black2));
 
         int[] balls3 = {1, 1, 1, 1, 1};
         int white3 = 1, black3 = 1;
-        System.out.println("Greedy Simulation Result: " + count_ways(balls3, white3, black3));
+        System.out.println(" Result: " + count_ways(balls3, white3, black3));
 
     }
 
