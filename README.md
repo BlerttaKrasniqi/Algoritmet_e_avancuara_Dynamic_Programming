@@ -75,33 +75,38 @@ Ky kod përdor një qasje të bazuar në rekursion me memoizim për të gjetur n
 
 ## Hapat kryesor të implementimit
 1.	Transformimi i Vargut   
--	Ashtu si në qasjen e parë, vargu balls konvertohet në një varg row, ku çdo top përfaqësohet si 1 për të bardhët dhe 0 për të zinjtë.  
+-	Vargu balls përfaqëson grupet e topave ku secili element tregon numrin e topave në secilin grup, duke alternuar midis të bardhëve (1) dhe të zinjve (0).
+-	Ky varg transformohet në një varg linear row, ku çdo element është ose 1 (për topat e bardhë) ose 0 (për topat e zinj).  
+<img width="425" alt="Screenshot 2024-12-29 at 14 58 38" src="https://github.com/user-attachments/assets/2327f490-a3f3-44d8-8e17-d1efc337f285" />
+
 2.	Funksioni simulate:  
--	Ky funksion simulon ndarjen e vargut duke përdorur një qasje greedy.  
--	Numëron segmentet "të bardhë" dhe "të zi" në mënyrë të njëpasnjëshme, duke përdorur një unazë për të llogaritur dhe kaluar në segmentin tjetër.  
+-	Ky funksion gjen numrin e ndarjeve të mundshme duke kontrolluar segmentet e vargut row.  
+-	Fillon nga një indeks specifik dhe llogarit në mënyrë të vazhdueshme numrin e topave të bardhë (whiteCount) dhe të zinj (blackCount).Nëse plotësohet numri i kërkuar i topave të bardhë ose të zinj për një ndarje, funksioni thirret rekursivisht për pjesën tjetër të vargut.
+<img width="523" alt="Screenshot 2024-12-29 at 15 03 01" src="https://github.com/user-attachments/assets/9310dc9d-51ec-4990-b7b7-13d90d67a48d" />
+  
 3.	Numërimi i Segmentimeve:  
--	Për çdo segment, kontrollohet nëse plotësohet kushti për të bardhët ose për të zinjtë. Nëse plotësohet, shtohet në numrin total të mënyrave dhe vazhdohet me segmentin tjetër.  
+-	Funksioni iteron nëpër të gjithë elementët e vargut row duke përdorur një cikël for dhe kontrollon për ndarjet e mundshme bazuar në kushtet për topat e bardhë dhe të zinj.  
 4.	Rezultati Final:  
 -	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për ndarjen e vargut.  
 
 ## Kompleksiteti kohor
-1.	Rreshti (row):  
--	Krijimi i array row kërkon O(n) njësoj si në qasjen dinamike.  
-2.	Simulimi (simulate):  
--	Algoritmi kalon linearisht nëpër elementet e row për të numëruar topat e bardhë dhe të zinj në segmente të ndryshme.  
--	Çdo element vizitohet një ose dy herë në total.  
--	Kompleksiteti i simulate është O(n)  
+Funksioni count_ways krijon një varg row me madhësi n, ku n është numri total i topave. Ky operacion kërkon kohë O(n).  
 
-## Kompleksiteti Total Kohor:
-•	O(n)
+Funksioni rekursiv simulate iteron nëpër vargun row dhe, për çdo pozicion, mund të thërrasë veten në mënyrë rekursive. Në rastin më të keq, kjo mund të çojë në një faktor degëzimi O(n) për çdo thirrje rekursive, duke rezultuar në kompleksitet O(n^2) në mungesë të memoizimit.  
+
+Megjithatë, memoizimi përdoret për të ruajtur rezultatet e gjendjeve të llogaritura më parë, duke reduktuar ndjeshëm numrin e llogaritjeve të panevojshme. Numri i gjendjeve unike përcaktohet nga kombinimi i start dhe black, duke çuar në maksimum O(n * b) gjendje unike, ku b është numri maksimal i topave të zinj.  
+
+Prandaj, kompleksiteti total kohor përafrohet në O(n * b), ku n është numri total i topave dhe b është numri maksimal i topave të zinj.   
 
 ## Kompleksiteti hapsinor
-1.	Array row:  
--	Kërkon hapësirë O(n) për ruajtjen e topave.  
-2.	Stack Rekursioni:  
--	Në këtë qasje nuk përdoret rekursion i thellë, dhe për këtë arsye nuk ka hapësirë shtesë të ndjeshme për call stack.  
+Kompleksiteti hapësinor ndikohet nga hapësira e përdorur për memoizimin. Harta store mund të përmbajë deri në O(n * b) gjendje, që korrespondon me gjendjet unike të funksionit rekursiv.  
 
-## Kompleksiteti Total Hapësinor:
-•	O(n)
+Për më tepër, call stack i funksionit rekursiv mund të arrijë një thellësi maksimale prej O(n) në rastin më të keq, duke çuar në një hapësirë shtesë prej O(n).  
+
+Prandaj, kompleksiteti total hapësinor është O(n * b) për shkak të ruajtjes së memoizimit, plus O(n) për call stack, që mund të thjeshtohet në O(n * b) si faktori dominues.   
+
+## Përmbledhje e Kompleksitetit:
+•	Kompleksiteti Kohor: O(n * b)  
+•	Kompleksiteti Hapësinor: O(n * b)  
 
 
