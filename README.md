@@ -71,42 +71,34 @@ Vargu balls përfaqëson topat . Ky varg shndërrohet në një varg row, që  p�
 
 
 ## Përshkrimi i Kodit
-Ky kod përdor një qasje të bazuar në rekursion me memoizim për të gjetur numrin e mënyrave për të ndarë vargun e topave sipas kushteve të përcaktuara.
+Ky kod përdor një qasje të thjeshtë rekursive (brute force) për të gjetur numrin e mënyrave për të ndarë një varg topash sipas kushteve të dhëna për numrin e topave të bardhë dhe të zinj në çdo ndarje. Ai së pari transformon vargun balls në një përfaqësim linear të vargut të topave dhe pastaj përdor një funksion ndihmës për të eksploruar të gjitha ndarjet e mundshme.  
 
 ## Hapat kryesor të implementimit
-1.	Transformimi i Vargut   
--	Vargu balls përfaqëson grupet e topave ku secili element tregon numrin e topave në secilin grup, duke alternuar midis të bardhëve (1) dhe të zinjve (0).
--	Ky varg transformohet në një varg linear row, ku çdo element është ose 1 (për topat e bardhë) ose 0 (për topat e zinj).  
-<img width="425" alt="Screenshot 2024-12-29 at 14 58 38" src="https://github.com/user-attachments/assets/2327f490-a3f3-44d8-8e17-d1efc337f285" />
+1.	Transformimi i Vargut     
+-Në funksionin countWaysBruteForce, vargu balls që përfaqëson grupet e topave të bardhë dhe të zinj konvertohet në një varg linear row ku çdo element përfaqëson një top (1 për të bardhët dhe 0 për të zinjtë).  
+-Ky transformim bëhet duke alternuar mes 1 dhe 0 për secilin grup në balls.  
 
-2.	Funksioni simulate:  
--	Ky funksion gjen numrin e ndarjeve të mundshme duke kontrolluar segmentet e vargut row.  
--	Fillon nga një indeks specifik dhe llogarit në mënyrë të vazhdueshme numrin e topave të bardhë (whiteCount) dhe të zinj (blackCount).Nëse plotësohet numri i kërkuar i topave të bardhë ose të zinj për një ndarje, funksioni thirret rekursivisht për pjesën tjetër të vargut.
-<img width="523" alt="Screenshot 2024-12-29 at 15 03 01" src="https://github.com/user-attachments/assets/9310dc9d-51ec-4990-b7b7-13d90d67a48d" />
+2.	Funksioni countWaysHelper:  
+-	Ky funksion implementon logjikën rekursive për të gjetur numrin e ndarjeve të mundshme.  
+-Rasti Bazë: Nëse indeksi start arrin fundin e vargut, konsiderohet se është gjetur një ndarje valide, dhe funksioni kthen 1.  
+-Procesi Rekursiv: Për çdo segment të filluar nga start, llogariten numrat e topave të bardhë dhe të zinj. Nëse plotësohet një nga kushtet për një segment të vlefshëm, funksioni thirret për pjesën tjetër të vargut.   
+<img width="525" alt="Screenshot 2024-12-29 at 16 40 22" src="https://github.com/user-attachments/assets/ef4ad522-0cb8-4850-a1eb-6727fc54471c" />    
   
 3.	Numërimi i Segmentimeve:  
--	Funksioni iteron nëpër të gjithë elementët e vargut row duke përdorur një cikël for dhe kontrollon për ndarjet e mundshme bazuar në kushtet për topat e bardhë dhe të zinj.  
+-	Funksioni iteron nëpër çdo pozicion të vargut duke ndarë segmentet sipas kufizimeve për numrin e topave të bardhë (white) dhe të zinj (black).  
+-Rezultatet e ndarjeve të vlefshme grumbullohen dhe kthehen.  
 4.	Rezultati Final:  
--	Rezultati i llogaritur nga simulate kthehet si numri total i mënyrave për ndarjen e vargut.  
+-	Në funksionin main, krijohen raste testuese për të llogaritur ndarjet për vlera të ndryshme të balls, white, dhe black.    
 
 ## Kompleksiteti kohor
-Funksioni count_ways krijon një varg row me madhësi n, ku n është numri total i topave. Ky operacion kërkon kohë O(n).  
-
-Funksioni rekursiv simulate iteron nëpër vargun row dhe, për çdo pozicion, mund të thërrasë veten në mënyrë rekursive. Në rastin më të keq, kjo mund të çojë në një faktor degëzimi O(n) për çdo thirrje rekursive, duke rezultuar në kompleksitet O(n^2) në mungesë të memoizimit.  
-
-Megjithatë, memoizimi përdoret për të ruajtur rezultatet e gjendjeve të llogaritura më parë, duke reduktuar ndjeshëm numrin e llogaritjeve të panevojshme. Numri i gjendjeve unike përcaktohet nga kombinimi i start dhe black, duke çuar në maksimum O(n * b) gjendje unike, ku b është numri maksimal i topave të zinj.  
-
-Prandaj, kompleksiteti total kohor përafrohet në O(n * b), ku n është numri total i topave dhe b është numri maksimal i topave të zinj.   
+Kompleksiteti kohor i funksionit countWaysBruteForce varet kryesisht nga thirrjet rekursive të bëra në funksionin countWaysHelper. Në rastin më të keq, funksioni eksploron të gjitha ndarjet e mundshme të vargut row. Duke qenë se gjatësia e vargut është n, numri i mënyrave për ta ndarë vargun në segmente mund të rritet në mënyrë eksponenciale. Konkretisht, për çdo pozicion në varg, funksioni mund të zgjedhë të mbyllë një segment ose të vazhdojë, duke krijuar një faktor degëzimi që mund të rezultojë në O(2^n) thirrje rekursive. Prandaj, kompleksiteti kohor i përgjithshëm mund të përafrohet si O(2^n), ku n është numri total i topave.   
+<img width="494" alt="Screenshot 2024-12-29 at 16 41 53" src="https://github.com/user-attachments/assets/a0241442-1a39-46ff-b369-73f5f60e5210" />
 
 ## Kompleksiteti hapsinor
-Kompleksiteti hapësinor ndikohet nga hapësira e përdorur për memoizimin. Harta store mund të përmbajë deri në O(n * b) gjendje, që korrespondon me gjendjet unike të funksionit rekursiv.  
-
-Për më tepër, call stack i funksionit rekursiv mund të arrijë një thellësi maksimale prej O(n) në rastin më të keq, duke çuar në një hapësirë shtesë prej O(n).  
-
-Prandaj, kompleksiteti total hapësinor është O(n * b) për shkak të ruajtjes së memoizimit, plus O(n) për call stack, që mund të thjeshtohet në O(n * b) si faktori dominues.   
+Kompleksiteti hapësinor përcaktohet nga hapësira e përdorur për stack-un e rekursioneve. Në rastin më të keq, thellësia maksimale e rekursionit mund të arrijë deri në n, duke çuar në një kompleksitet hapësinor prej O(n). Përveç kësaj, hapësira e përdorur për vargun row është gjithashtu O(n), pasi ruan përfaqësimin e plotë të topave. Prandaj, kompleksiteti i përgjithshëm hapësinor është O(n).    
 
 ## Përmbledhje e Kompleksitetit:
-•	Kompleksiteti Kohor: O(n * b)  
+•	Kompleksiteti Kohor: O(2^n)
 •	Kompleksiteti Hapësinor: O(n * b)  
 
 
