@@ -4,34 +4,38 @@ import java.util.Map;
 
 public class Recursion_Memoization {
 
-    private static int simulate(int[] row, int white, int black) {
-        int totalWays = 0;
-        int currentIndex = 0;
-
-        while (currentIndex < row.length) {
-            int whiteCount = 0, blackCount = 0;
-
-
-            for (int i = currentIndex; i < row.length; i++) {
-                if (row[i] == 1) whiteCount++;
-                if (whiteCount == white) {
-                    totalWays++;
-                    currentIndex = i + 1;
-                    break;
-                }
-            }
-
-            for (int i = currentIndex; i < row.length; i++) {
-                if (row[i] == 0) blackCount++;
-                if (blackCount == black) {
-                    totalWays++;
-                    currentIndex = i + 1;
-                    break;
-                }
-            }
+    private static int simulate(int[] row, int white, int black, int start,Map<String, Integer>store) {
+        if (start == row.length) {
+            return 1;
         }
 
-        return totalWays;
+        String key = start + "-"+black;
+        if(store.containsKey(key)){
+            return store.get(key);
+        }
+
+        int whiteCount = 0, blackCount = 0, ways = 0;
+
+        for (int i = start; i < row.length; i++) {
+            if (row[i] == 1) {
+                whiteCount++;
+            } else {
+                blackCount++;
+            }
+
+
+            if (whiteCount == white) {
+                ways += countWaysHelper(row, white, black, i + 1,store);
+            }
+
+            
+            if (blackCount == black) {
+                ways += countWaysHelper(row, white, black, i + 1,store);
+            }
+        }
+        store.put(key,ways);
+
+        return ways;
     }
 
 
@@ -40,16 +44,17 @@ public class Recursion_Memoization {
         int[] row = new int[n];
 
         int index = 0;
-        boolean WhiteBall = true;
-        for (int count:balls){
-            for(int j=0;j<count;j++){
-                row[index++]=WhiteBall ?1:0;
-
+        boolean isWhite = true;
+        for (int count : balls) {
+            for (int j = 0; j < count; j++) {
+                row[index++] = isWhite ? 1 : 0;
             }
-            WhiteBall=!WhiteBall;
+            isWhite = !isWhite;
         }
 
-        return simulate(row, white, black);
+        Map<String, Integer>store = new HashMap<>();
+
+        return countWaysHelper(row, white, black, 0,store);
     }
     public static void main(String[] args){
         int[] balls1 = {2, 2};
