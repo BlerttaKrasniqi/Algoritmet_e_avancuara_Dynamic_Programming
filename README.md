@@ -99,6 +99,6 @@ Kompleksiteti hapësinor përcaktohet nga hapësira e përdorur për stack-un e 
 
 ## Përmbledhje e Kompleksitetit:
 •	Kompleksiteti Kohor: O(2^n)
-•	Kompleksiteti Hapësinor: O(n * b)  
+•	Kompleksiteti Hapësinor: O(n)  
 
 
